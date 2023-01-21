@@ -25,16 +25,16 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - run: npm i -g @angular/cli
+    - run: ng build 
+    - run: npm test -- --watch=false --browsers:ChromeHeadless
 
 #GH Page deploy if I did this right lmao 
-    - name: Deploy
-      if: success()
-      uses: peaceiris/actions-gh-pages@v3.9.2
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: dist/angular-github-actions
-        enable_jekyll: true
+ #   - name: Deploy
+  #    if: success()
+   #   uses: peaceiris/actions-gh-pages@v3.9.2
+     # with:
+      #  github_token: ${{ secrets.GITHUB_TOKEN }}
+       # publish_dir: dist/angular-github-actions
+        #enable_jekyll: true
 
